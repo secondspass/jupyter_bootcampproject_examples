@@ -22,3 +22,12 @@ Jun average temperature and the number of medicare benificiaries in that county.
 No special instructions. Just make sure that the `CtyAvTemp62016.csv` and
 `2016_HHSemPOWERMapHistoricalDataset.xlsx` files are in the `data` directory.
 
+### aggregate_poweroutage_data.ipynb
+This shows how to use Pandas groupby and aggregate functions to get mean and median
+(and other stuff too) of a time series data. In this example I use the
+`eaglei_outages_2016.csv` which is a time series data. I show how to aggregate the 
+data for the date 2016-06-20 to get mean and median of the number of people who are out of
+power that day.
+
+Make sure the `eaglei_outages_2016.csv` file is in the data directory. Github will not
+allow it to be pushed so you'll have to copy it in to the data directory.
