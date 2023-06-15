@@ -50,3 +50,26 @@ all output will help this.
 the text in the widget itself for ``c_min`` and ``c_max`` don't update. Just a quality of life bug. A workaround can be done
 that fixes this by uncommenting the ``c_min.value`` and ``c_max.value`` lines in the ``update`` function, but then this generates
 two additional plots as updating c_min and c_max "regenerates" the plot.
+
+### eaglei_mpi_scripts
+
+To not mess up the existing environment, these scripts only depend on installing `mpi4py` and `pandas`.
+Have not tested these in a notebook, and unsure how that would work but should be possible?
+(at the very least can have a Jupyter cell that executes a python script externally rather than the code being in the cell itself)
+
+There are four scripts in the `eaglei_mpi_scripts` directory that represent two different analyses.
+For each analysis, there exists a non-MPI approach `eaglei_no_mpi*.py` and an MPI approach `eaglei_mpi*.py`.
+Each script can be run individually to see how a non-MPI approach is slow compared to when parallelizing things with MPI.
+Similar to other eaglei examples in this repository, you need to have access locally to `eaglei_outages_*.csv` for 2014-2022.
+
+Analysis 1:
+
+* `eaglei_no_mpi.py`: Sums the total blackouts across 2014-2022 without MPI. `python3 eaglei_no_mpi.py`
+* `eaglei_mpi.py`: Sums the total blackouts across 2014-2022 using MPI. Each MPI rank reads in a different year. Because there are 9 files, this is run with `mpirun -np 9 python3 eaglei_mpi.py`
+
+Analysis 2:
+
+* `eaglei_no_mpi_ex2.py`: For a *specific* year (in this case 2014), sums the total blackouts for unique counties. `python3 eaglei_no_mpi_ex2.py`
+* `eaglei_mpi_ex2.py`: For a *specific* year (in this case 2014), sums the total blackouts for unique counties using MPI. Each MPI ranks takes a subset of the counties and calculates the sum for its assigned counties. For simplicity, things are coded assuming counties divide evenly among MPI ranks, so this was tested for 1,2,4,and 8 MPI ranks (acts as a nice example of how scaling works). This is run like so (e.g., for 2 MPI ranks): `mpirun -np 2 python3 eaglei_mpi_ex2.py`
+
+
