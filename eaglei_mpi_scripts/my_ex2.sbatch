@@ -3,9 +3,9 @@
 #SBATCH --nodes=1
 #SBATCH --time=10
 #SBATCH --ntasks-per-node=<CHANGE THIS>
-#SBATCH --job-name eaglei_mpi-ex2-%j
-#SBATCH -o eaglei_mpi_ex2-%j.out
-#SBATCH -e eaglei_mpi-ex2-%j.err
+#SBATCH --job-name my_ex2-%j
+#SBATCH -o my_ex2-%j.out
+#SBATCH -e my_ex2-%j.err
 
 module load evp-patch
 
