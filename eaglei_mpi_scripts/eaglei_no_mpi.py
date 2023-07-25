@@ -6,7 +6,7 @@ file_nums = ['2014','2015','2016','2017','2018','2019','2020','2021','2022']
 
 blackouts_total = 0
 for i in file_nums:
-    df = pd.read_csv(f'./eaglei_dat/eaglei_outages/eaglei_outages_{i}.csv')
+    df = pd.read_csv(f'../data/eaglei_outages/eaglei_outages_{i}.csv')
 
     blackouts = df['sum']
     blackouts_local = blackouts.sum()

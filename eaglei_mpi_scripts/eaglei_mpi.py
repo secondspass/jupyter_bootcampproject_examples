@@ -9,7 +9,7 @@ rank = comm.Get_rank()
 t1 = tp.time()
 file_nums = ['2014','2015','2016','2017','2018','2019','2020','2021','2022']
 
-df = pd.read_csv(f'./eaglei_dat/eaglei_outages/eaglei_outages_{file_nums[rank]}.csv')
+df = pd.read_csv(f'../data/eaglei_outages/eaglei_outages_{file_nums[rank]}.csv')
 
 blackouts = df['sum']
 blackouts_local = blackouts.sum()
@@ -20,4 +20,4 @@ t2 = tp.time()
 
 if rank==0:
     print('The total time of the script was:',t2-t1, 'seconds')
-    print("Rank 0 got the sum, the total blackouts from 2014-2022:", blackouts_total)
+    print("Rank 0 got the sum, the total blackouts from 2014-2022:", int(blackouts_total))

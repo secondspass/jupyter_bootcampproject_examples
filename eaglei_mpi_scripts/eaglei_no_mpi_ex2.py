@@ -18,7 +18,14 @@ for i in all_counties:
     specific_county_sum = specific_county_data.sum()
 
     #Print out the data (can probably make this append to a new pandas dataframe instead of printing -- potential exercise)
-    print(f'Total blackouts for county {i}:', specific_county_sum)
+    counties.append(int(i))
+    sums.append(int(specific_county_sum))
+    
+
+d = {'FIPS Code': counties, 'Blackout Sum' : sums}
+blackouts_df = pd.DataFrame(data=d) 
+blackouts_df.to_csv('county_blackouts.csv', index=False)
+
 t2=tp.time()
 
 print('Total time of script', t2-t1)
